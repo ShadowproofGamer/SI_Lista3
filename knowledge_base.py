@@ -1,6 +1,7 @@
 from random import choice
 from experta import *
 
+
 class Display(Fact):
     """Info about the dishwasher's display."""
     pass
@@ -15,13 +16,13 @@ class DishwasherStopsWorking(KnowledgeEngine):
     @Rule(Display(number=L(10) | L('10'))
           | Problem(description="The dishwasher doesn't fill with water"))
     def no_water(self):
-        if input("Is the water tap blocked or furred with limescale? \n") == "yes":
+        if input("Is the water tap blocked or furred with limescale? \nyes/no: ") == "yes":
             print("Clean the water tap.")
-        elif input("Is the water tap is closed? \n") == "yes":
+        if input("Is the water tap is closed? \nyes/no: ") == "yes":
             print("Open the water tap.")
-        elif input("Is the filter in the water inlet hose blocked? \n") == "yes":
+        if input("Is the filter in the water inlet hose blocked? \nyes/no: ") == "yes":
             print("Clean the filter.")
-        elif input("Is the connection of the water inlet hose not correct? \n") == "yes":
+        if input("Is the connection of the water inlet hose not correct? \nyes/no: ") == "yes":
             print("The hose can be kinked or squashed. Make sure that the connection is correct")
         else:
             print("Try to reset the dishwasher. If the problem persists contact Support")
@@ -29,9 +30,9 @@ class DishwasherStopsWorking(KnowledgeEngine):
     @Rule(Display(number=L(20) | L('20'))
           | Problem(description="The dishwasher will not drain"))
     def no_drain(self):
-        if input("Is There a blockage in the sink spigot? \n") == "yes":
+        if input("Is There a blockage in the sink spigot? \nyes/no: ") == "yes":
             print("Clean the sink spigot.")
-        elif input("Is the connection of the water drain hose not correct? \n") == "yes":
+        if input("Is the connection of the water drain hose not correct? \nyes/no: ") == "yes":
             print("The hose can be kinked or squashed. Make sure that the connection is correct")
         else:
             print("Try to reset the dishwasher. If the problem persists contact Support")
@@ -43,16 +44,18 @@ class DishwasherStopsWorking(KnowledgeEngine):
 
     @Rule(Problem(description="The programme does not start"))
     def programme_not_starting(self):
-        if input("Is the appliance door not closed? \n") == "yes":
+        if input("Is the appliance door not closed? \nyes/no: ") == "yes":
             print("Close the door.")
-        elif input("Is mains plug not connected in? \n") == "yes":
+        if input("Is mains plug not connected in? \nyes/no: ") == "yes":
             print("Put in the mains")
-        elif input("Has the fuse blown out in the household fuse box? \n") == "yes":
+        if input("Has the fuse blown out in the household fuse box? \nyes/no: ") == "yes":
             print("Replace the fuse.")
-        elif input("Is delay start set? \n") == "yes":
+        if input("Is delay start set? \nyes/no: ") == "yes":
             print("Cancel the delay start to start the programme immediately.")
         else:
-            print("Try to reset the dishwasher. If the problem persists contact Support\n")
+            print("Try to reset the dishwasher (press on/off button). If the problem persists contact Support\n")
+
+
 
 
 class ResultsNotSatisfactory(KnowledgeEngine):
